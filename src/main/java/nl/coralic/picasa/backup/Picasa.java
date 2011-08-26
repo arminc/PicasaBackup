@@ -1,14 +1,23 @@
 package nl.coralic.picasa.backup;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gdata.client.photos.PicasawebService;
+import com.google.gdata.data.photos.AlbumEntry;
+import com.google.gdata.data.photos.AlbumFeed;
+import com.google.gdata.data.photos.UserFeed;
 import com.google.gdata.util.AuthenticationException;
+import com.google.gdata.util.ServiceException;
 
-public class PWABackup
+public class Picasa
 {
-
 	private PicasawebService picasaService;
 
-	public PWABackup(String username, String password)
+	public Picasa(String username, String password)
 			throws AuthenticationException
 	{
 		validateUsernamePassword(username, password);
@@ -31,12 +40,25 @@ public class PWABackup
 
 	private void createPicasawebService()
 	{
-		picasaService = new PicasawebService(PWABackup.class.getName());
+		picasaService = new PicasawebService(Picasa.class.getName());
 	}
 
 	private void setCredentials(String username, String password)
 			throws AuthenticationException
 	{
 		picasaService.setUserCredentials(username, password);
+	}
+
+	public List<AlbumEntry> fetchAlbums()
+	{
+		UserFeed userFeed;
+		try
+		{
+			userFeed = picasaService.getFeed(new URL("https://picasaweb.google.com/data/feed/api/user/default?kind=album"), UserFeed.class);
+		} catch (Exception e)
+		{
+			return new ArrayList<AlbumEntry>();
+		}
+		return userFeed.getAlbumEntries();
 	}
 }

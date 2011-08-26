@@ -2,13 +2,6 @@ package nl.coralic.picasa.backup;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Properties;
-
-import org.junit.Before;
 import org.junit.Test;
 
 import com.google.gdata.util.AuthenticationException;
@@ -20,7 +13,7 @@ public class LoginTest extends Initialize
 	{
 		try
 		{
-			new PWABackup(USERNAME, PASSWORD);
+			new Picasa(USERNAME, PASSWORD);
 		} catch (AuthenticationException e)
 		{
 			fail();
@@ -32,7 +25,7 @@ public class LoginTest extends Initialize
 	{
 		try
 		{
-			new PWABackup("", PASSWORD);
+			new Picasa("", PASSWORD);
 			fail();
 		} catch (AuthenticationException e)
 		{
@@ -45,7 +38,7 @@ public class LoginTest extends Initialize
 	{
 		try
 		{
-			new PWABackup(USERNAME, "");
+			new Picasa(USERNAME, "");
 			fail();
 		} catch (AuthenticationException e)
 		{
@@ -56,6 +49,6 @@ public class LoginTest extends Initialize
 	@Test(expected = AuthenticationException.class)
 	public void wrongCredentials() throws AuthenticationException
 	{
-		new PWABackup("username", "password");
+		new Picasa("username", "password");
 	}
 }
