@@ -2,30 +2,26 @@ package nl.coralic.picasa.backup;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.google.gdata.util.AuthenticationException;
 
-public class LoginTest extends Initialize
+public class LoginTest
 {
-	@Test
-	public void successful()
-	{
-		try
-		{
-			new Picasa(USERNAME, PASSWORD);
-		} catch (AuthenticationException e)
-		{
-			fail();
-		}
+	Picasa picasa;
+	
+	@Before
+	public void initalize(){
+		picasa = new Picasa();
 	}
-
+	
 	@Test
 	public void emptyUsername()
 	{
 		try
 		{
-			new Picasa("", PASSWORD);
+			picasa.login("", "PASSWORD");
 			fail();
 		} catch (AuthenticationException e)
 		{
@@ -38,7 +34,7 @@ public class LoginTest extends Initialize
 	{
 		try
 		{
-			new Picasa(USERNAME, "");
+			picasa.login("USERNAME", "");
 			fail();
 		} catch (AuthenticationException e)
 		{
@@ -49,6 +45,7 @@ public class LoginTest extends Initialize
 	@Test(expected = AuthenticationException.class)
 	public void wrongCredentials() throws AuthenticationException
 	{
-		new Picasa("username", "password");
+		//TODO: Don't use picasa to test this
+		picasa.login("username", "password");
 	}
 }
