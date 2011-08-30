@@ -25,10 +25,4 @@ public class FileHandlerTest
 	{
 		assertEquals(true,FileHandler.createFolder("target","album"));
 	}
-	
-	@Test
-	public void saveDataToFile()
-	{
-		//TODO: how to save
-	}
 }
