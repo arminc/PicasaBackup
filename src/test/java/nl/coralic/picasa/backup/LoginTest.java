@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import static org.mockito.Mockito.*;
 
 import com.google.gdata.util.AuthenticationException;
 
@@ -45,7 +46,8 @@ public class LoginTest
 	@Test(expected = AuthenticationException.class)
 	public void wrongCredentials() throws AuthenticationException
 	{
-		//TODO: Don't use picasa to test this
-		picasa.login("username", "password");
+		Picasa picasaMock = mock(Picasa.class);
+		doThrow(new AuthenticationException("Fake error")).when(picasaMock).login("username","password");
+		picasaMock.login("username", "password");
 	}
 }
