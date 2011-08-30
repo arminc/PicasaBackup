@@ -6,12 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
 import com.google.gdata.client.photos.PicasawebService;
-import com.google.gdata.data.Category;
 import com.google.gdata.data.media.mediarss.MediaContent;
 import com.google.gdata.data.photos.AlbumEntry;
 import com.google.gdata.data.photos.AlbumFeed;
