@@ -30,11 +30,6 @@ public class Albums implements Iterable<Album>
 		return albums;
 	}
 
-	public int size()
-	{
-		return albums.size();
-	}
-
 	public Iterator<Album> iterator()
 	{
 		return albums.iterator();

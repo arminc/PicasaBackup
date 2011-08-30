@@ -36,12 +36,6 @@ public class AlbumsTest
 		return mock(AlbumEntry.class);
 	}
 	
-	@Test
-	public void getSize()
-	{
-		assertSame(1, albums.size());
-	}
-	
 	@Test 
 	public void getIterator()
 	{
