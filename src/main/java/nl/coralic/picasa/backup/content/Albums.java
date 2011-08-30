@@ -34,4 +34,9 @@ public class Albums implements Iterable<Album>
 	{
 		return albums.iterator();
 	}
+	
+	public int size()
+	{
+		return albums.size();
+	}
 }
