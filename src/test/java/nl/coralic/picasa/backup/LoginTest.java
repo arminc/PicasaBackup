@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
+import com.google.gdata.client.photos.PicasawebService;
 import com.google.gdata.util.AuthenticationException;
 
 public class LoginTest
@@ -47,9 +48,11 @@ public class LoginTest
 	@Test(expected = AuthenticationException.class)
 	public void wrongCredentials() throws AuthenticationException
 	{
-		Picasa picasaMock = mock(Picasa.class);
-		doThrow(new AuthenticationException("Fake error")).when(picasaMock)
-				.login("username", "password");
-		picasaMock.login("username", "password");
+		PicasawebService picasaServiceMock = mock(PicasawebService.class);
+		doThrow(new AuthenticationException("Fake error")).when(
+				picasaServiceMock).setUserCredentials("username", "password");
+		Picasa newPicasa = new Picasa();
+		newPicasa.setPicasaService(picasaServiceMock);
+		newPicasa.login("username", "password");
 	}
 }
