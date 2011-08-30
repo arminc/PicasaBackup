@@ -3,23 +3,25 @@ package nl.coralic.picasa.backup;
 import java.net.URL;
 
 import nl.coralic.picasa.backup.content.Albums;
+import nl.coralic.picasa.backup.content.Media;
 
 import com.google.gdata.client.photos.PicasawebService;
+import com.google.gdata.data.photos.AlbumFeed;
 import com.google.gdata.data.photos.UserFeed;
 import com.google.gdata.util.AuthenticationException;
 
 public class Picasa
 {
 	private PicasawebService picasaService;
-
-	public Picasa()		
-	{	
+	
+	public void setPicasaService(PicasawebService picasaService)
+	{
+		this.picasaService = picasaService;
 	}
 	
 	public void login(String username, String password) throws AuthenticationException
 	{
 		validateUsernamePassword(username, password);
-		createPicasawebService();
 		setCredentials(username, password);
 	}
 
@@ -34,11 +36,6 @@ public class Picasa
 		{
 			throw new AuthenticationException("Password can not be empty");
 		}
-	}
-
-	private void createPicasawebService()
-	{
-		picasaService = new PicasawebService(Picasa.class.getName());
 	}
 
 	private void setCredentials(String username, String password)
@@ -58,5 +55,19 @@ public class Picasa
 			return new Albums();
 		}
 		return new Albums(userFeed.getAlbumEntries());
+	}
+
+	public Media fetchMedia(String albumid)
+	{
+		AlbumFeed albumFeed;
+		try
+		{
+			albumFeed = picasaService.getFeed(new URL("https://picasaweb.google.com/data/feed/api/user/default/albumid/"+albumid+"?imgmax=d"), AlbumFeed.class);
+		} catch (Exception e)
+		{
+			return new Media();
+		}
+		
+		return new Media(albumFeed.getPhotoEntries());
 	}
 }
