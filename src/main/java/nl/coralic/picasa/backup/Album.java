@@ -13,9 +13,7 @@ public class Album
 
 	public String getAlbumId()
 	{
-		String id = albumEntry.getId();
-		int lastSlash = id.lastIndexOf("/");
-		return id.substring(lastSlash+1);
+		return albumEntry.getGphotoId();
 	}
 
 }

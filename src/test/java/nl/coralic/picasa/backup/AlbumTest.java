@@ -33,7 +33,7 @@ public class AlbumTest
 	private AlbumEntry createFakeAlbumEntry()
 	{
 		AlbumEntry fakeAlbumEntry = mock(AlbumEntry.class);
-		when(fakeAlbumEntry.getId()).thenReturn("http://picasa......./album/"+ALBUMID);
+		when(fakeAlbumEntry.getGphotoId()).thenReturn(ALBUMID);
 		return fakeAlbumEntry;
 	}
 	
