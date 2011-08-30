@@ -35,4 +35,8 @@ public class Media implements Iterable<MediaContent>
 		return mediaContent.iterator();
 	}
 
+	public int size()
+	{
+		return mediaContent.size();
+	}
 }

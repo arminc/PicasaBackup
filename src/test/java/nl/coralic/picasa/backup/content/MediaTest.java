@@ -47,4 +47,10 @@ public class MediaTest
 		Media newMedia = new Media();
 		assertNotNull(newMedia.iterator());
 	}
+	
+	@Test
+	public void getsize()
+	{
+		assertEquals(1, media.size());
+	}
 }
