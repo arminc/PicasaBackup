@@ -10,4 +10,27 @@ public class MediaContent
 	{
 		this.photoEntry = photoEntry;
 	}
+
+	public boolean isPhoto()
+	{
+		if(photoEntry.getMediaContents().size() == 1)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public Object getName()
+	{
+		return photoEntry.getTitle().getPlainText();
+	}
+
+	public Object getContentUrl()
+	{
+		if(isPhoto())
+		{
+			return photoEntry.getMediaContents().get(0).getUrl();
+		}
+		return photoEntry.getMediaContents().get(photoEntry.getMediaContents().size()).getUrl();
+	}
 }
