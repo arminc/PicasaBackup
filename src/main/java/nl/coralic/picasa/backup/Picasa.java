@@ -42,7 +42,7 @@ public class Picasa
 	private void setCredentials(String username, String password)
 			throws AuthenticationException
 	{
-		//picasaService.setUserCredentials(username, password);
+		picasaService.setUserCredentials(username, password);
 	}
 
 	public Albums fetchAlbums()
