@@ -38,12 +38,6 @@ public class AlbumTest
 	}
 	
 	@Test
-	public void notNull()
-	{
-		assertNotNull(albums);
-	}
-	
-	@Test
 	public void getSize()
 	{
 		assertSame(1, albums.size());
@@ -58,6 +52,12 @@ public class AlbumTest
 			return;
 		}
 		fail("Did not go in to for loop.");
+	}
+	
+	@Test 
+	public void getIter()
+	{
+		assertNotNull(albums.iterator());
 	}
 
 }
