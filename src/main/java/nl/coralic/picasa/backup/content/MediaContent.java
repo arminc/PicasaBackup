@@ -20,17 +20,17 @@ public class MediaContent
 		return false;
 	}
 
-	public Object getName()
+	public String getName()
 	{
 		return photoEntry.getTitle().getPlainText();
 	}
 
-	public Object getContentUrl()
+	public String getContentUrl()
 	{
 		if(isPhoto())
 		{
 			return photoEntry.getMediaContents().get(0).getUrl();
 		}
-		return photoEntry.getMediaContents().get(photoEntry.getMediaContents().size()).getUrl();
+		return photoEntry.getMediaContents().get(photoEntry.getMediaContents().size()-1).getUrl();
 	}
 }

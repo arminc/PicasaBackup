@@ -1,5 +1,7 @@
 package nl.coralic.picasa.backup;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.security.Permission;
 
 import org.junit.AfterClass;
@@ -26,7 +28,7 @@ public class PicasaBackupTest
 	}
 
 	@Test
-	public void checkArgumentsWrong() throws AuthenticationException
+	public void checkArgumentsWrong() throws AuthenticationException, MalformedURLException, IOException
 	{
 		try
 		{
