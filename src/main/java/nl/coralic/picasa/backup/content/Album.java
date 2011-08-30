@@ -16,4 +16,9 @@ public class Album
 		return albumEntry.getGphotoId();
 	}
 
+	public String getAlbumName()
+	{
+		return albumEntry.getTitle().getPlainText();
+	}
+
 }
