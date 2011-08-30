@@ -40,4 +40,11 @@ public class MediaTest
 	{
 		assertNotNull(media.iterator());
 	}
+	
+	@Test
+	public void createMediaWithoutArguments()
+	{
+		Media newMedia = new Media();
+		assertNotNull(newMedia.iterator());
+	}
 }

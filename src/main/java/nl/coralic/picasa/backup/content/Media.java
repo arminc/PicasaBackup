@@ -15,6 +15,11 @@ public class Media implements Iterable<MediaContent>
 		mediaContent = generateAlbumsList(photoEntries);
 	}
 	
+	public Media()
+	{
+		mediaContent = new ArrayList<MediaContent>();
+	}
+	
 	private List<MediaContent> generateAlbumsList(List<PhotoEntry> photoEntries)
 	{
 		mediaContent = new ArrayList<MediaContent>();

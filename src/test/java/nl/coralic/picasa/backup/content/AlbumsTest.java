@@ -42,4 +42,10 @@ public class AlbumsTest
 		assertNotNull(albums.iterator());
 	}
 
+	@Test
+	public void createAlbumsaWithoutArguments()
+	{
+		Albums newAlbums = new Albums();
+		assertNotNull(newAlbums.iterator());
+	}
 }
