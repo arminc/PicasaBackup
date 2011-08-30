@@ -5,6 +5,9 @@ import java.security.Permission;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.google.gdata.util.AuthenticationException;
+
 import static org.junit.Assert.*;
 
 public class PicasaBackupTest
@@ -23,28 +26,16 @@ public class PicasaBackupTest
 	}
 
 	@Test
-	public void checkArgumentsCorrect()
-	{
-		PWABackup.main(new String[]	{ "1", "2", "3" });
-	}
-
-	@Test
-	public void checkArgumentsWrong()
+	public void checkArgumentsWrong() throws AuthenticationException
 	{
 		try
 		{
-			PWABackup.main(new String[]
+			PicasaBackup.main(new String[]
 			{ "1" });
 		} catch (ExitException e)
 		{
 			assertEquals(0, e.status);
 		}
-	}
-	
-	@Test
-	public void checkCorrectFolder()
-	{
-		
 	}
 	
 	//These two classes needed for testing System.exit in the main function
