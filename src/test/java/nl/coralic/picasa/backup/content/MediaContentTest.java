@@ -43,6 +43,7 @@ public class MediaContentTest
 	
 	private List<com.google.gdata.data.media.mediarss.MediaContent> createFakeList(int size)
 	{
+		@SuppressWarnings("unchecked")
 		List<com.google.gdata.data.media.mediarss.MediaContent> fakeList = mock(ArrayList.class);
 		when(fakeList.size()).thenReturn(size);
 		com.google.gdata.data.media.mediarss.MediaContent fakeMediaContent = createFakeMediaContent();
@@ -91,7 +92,7 @@ public class MediaContentTest
 	}
 	
 	@Test
-	public void getUrl()
+	public void getContentUrl()
 	{
 		assertEquals(URL, mediaContentPhoto.getContentUrl());
 	}
