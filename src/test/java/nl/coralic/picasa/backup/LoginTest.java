@@ -11,12 +11,13 @@ import com.google.gdata.util.AuthenticationException;
 public class LoginTest
 {
 	Picasa picasa;
-	
+
 	@Before
-	public void initalize(){
+	public void initalize()
+	{
 		picasa = new Picasa();
 	}
-	
+
 	@Test
 	public void emptyUsername()
 	{
@@ -47,7 +48,8 @@ public class LoginTest
 	public void wrongCredentials() throws AuthenticationException
 	{
 		Picasa picasaMock = mock(Picasa.class);
-		doThrow(new AuthenticationException("Fake error")).when(picasaMock).login("username","password");
+		doThrow(new AuthenticationException("Fake error")).when(picasaMock)
+				.login("username", "password");
 		picasaMock.login("username", "password");
 	}
 }
