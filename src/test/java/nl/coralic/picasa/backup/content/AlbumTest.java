@@ -1,4 +1,6 @@
-package nl.coralic.picasa.backup;
+package nl.coralic.picasa.backup.content;
+
+import nl.coralic.picasa.backup.content.Album;
 
 import org.junit.Before;
 import org.junit.Test;

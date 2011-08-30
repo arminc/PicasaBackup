@@ -1,7 +1,9 @@
-package nl.coralic.picasa.backup;
+package nl.coralic.picasa.backup.content;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import nl.coralic.picasa.backup.content.Media;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,8 +16,6 @@ import static org.mockito.Mockito.mock;
 public class MediaTest
 {
 	Media media;
-	MediaContent photo;
-	MediaContent video;
 	
 	@Before
 	public void initialize()
@@ -32,8 +32,7 @@ public class MediaTest
 	
 	private PhotoEntry createFakePhotoEntry()
 	{
-		PhotoEntry fakePhotoEntry = mock(PhotoEntry.class);
-		return fakePhotoEntry;
+		return mock(PhotoEntry.class);
 	}
 	
 	@Test

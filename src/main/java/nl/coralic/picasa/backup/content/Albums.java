@@ -1,4 +1,4 @@
-package nl.coralic.picasa.backup;
+package nl.coralic.picasa.backup.content;
 
 import java.util.ArrayList;
 import java.util.Iterator;

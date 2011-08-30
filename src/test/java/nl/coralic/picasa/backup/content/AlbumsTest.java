@@ -1,8 +1,10 @@
-package nl.coralic.picasa.backup;
+package nl.coralic.picasa.backup.content;
 
 
 import java.util.ArrayList;
 import java.util.List;
+
+import nl.coralic.picasa.backup.content.Albums;
 
 import org.junit.Before;
 import org.junit.Test;

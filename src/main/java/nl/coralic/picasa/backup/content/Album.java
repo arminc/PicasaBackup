@@ -1,4 +1,4 @@
-package nl.coralic.picasa.backup;
+package nl.coralic.picasa.backup.content;
 
 import com.google.gdata.data.photos.AlbumEntry;
 

@@ -2,6 +2,8 @@ package nl.coralic.picasa.backup;
 
 import java.net.URL;
 
+import nl.coralic.picasa.backup.content.Albums;
+
 import com.google.gdata.client.photos.PicasawebService;
 import com.google.gdata.data.photos.UserFeed;
 import com.google.gdata.util.AuthenticationException;
