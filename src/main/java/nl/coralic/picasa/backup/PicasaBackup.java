@@ -1,11 +1,8 @@
 package nl.coralic.picasa.backup;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
-
-import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 
 import nl.coralic.picasa.backup.content.Album;
 import nl.coralic.picasa.backup.content.Albums;
@@ -17,33 +14,16 @@ import com.google.gdata.util.AuthenticationException;
 
 public class PicasaBackup
 {
-
-	//TODO: can an album have folders/albums inside it?
-	//TODO: add log4j
+	static Logger logger = Logger.getLogger("PicasaBackup");
+	static Picasa picasa;
 	
 	public static void main(String[] args) throws AuthenticationException, MalformedURLException, IOException
 	{
 		checkArguments(args);
-		if(!FileHandler.folderExists(args[2]))
-		{
-			System.out.println("Folder " + args[2] + " does not exist.");
-			exit();
-		}
-		Picasa picasa = PicasaFactory.createPicasa();
-		picasa.login(args[0], args[1]);
-		Albums albums = picasa.fetchAlbums();
-		for(Album album : albums)
-		{
-			FileHandler.createFolder(args[2], album.getAlbumName());
-			Media media = picasa.fetchMedia(album.getAlbumId());
-			for(MediaContent mediaContent : media)
-			{
-				System.out.println("Download: " + mediaContent.getContentUrl());
-				FileUtils.copyURLToFile(new URL(mediaContent.getContentUrl()), new File(mediaContent.getName()));
-			}
-		}
-			//download photos
-			//download videos
+		LogFactory.initializeLog4J(args);
+		checkTargetFolder(args);
+		createPicasa(args);
+		fetchMediaThenSave(args);
 	}
 	
 	private static void checkArguments(String[] args)
@@ -63,5 +43,42 @@ public class PicasaBackup
 	private static void exit()
 	{
 		System.exit(0);
+	}
+	
+	private static void checkTargetFolder(String[] args)
+	{
+		if(!FileHandler.folderExists(args[2]))
+		{
+			logger.info("Folder " + args[2] + " does not exist.");
+			exit();
+		}
+	}
+	
+	private static void createPicasa(String[] args) throws AuthenticationException
+	{
+		picasa = PicasaFactory.createPicasa();
+		picasa.login(args[0], args[1]);
+	}
+	
+	private static void fetchMediaThenSave(String[] args)
+	{
+		Albums albums = picasa.fetchAlbums();
+		for(Album album : albums)
+		{
+			logger.info("Downloading album " + album.getAlbumName());
+			String albumPath = FileHandler.constructFolderPath(args[2], album.getAlbumName());
+			Media media = picasa.fetchMedia(album.getAlbumId());
+			saveMediaToFile(media, albumPath);
+		}
+	}
+	
+	private static void saveMediaToFile(Media media, String savePath)
+	{
+		for(MediaContent mediaContent : media)
+		{
+			String mediaPath = FileHandler.constructFolderPath(savePath, mediaContent.getName());
+			logger.info("Downloading media " + mediaContent.getName());
+			FileHandler.saveMediaToFile(mediaContent.getContentUrl(), mediaPath);
+		}
 	}
 }

@@ -1,12 +1,17 @@
 package nl.coralic.picasa.backup.file;
 
-import nl.coralic.picasa.backup.file.FileHandler;
+import java.io.File;
 
-import org.junit.AfterClass;
+import nl.coralic.picasa.backup.file.FileHandler;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class FileHandlerTest
 {
-
+	@Test
+	public void constructFolder()
+	{
+		assertEquals("test" + File.separator + "test",
+				FileHandler.constructFolderPath("test", "test"));
+	}
 }
