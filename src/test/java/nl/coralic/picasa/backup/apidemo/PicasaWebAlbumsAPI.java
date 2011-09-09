@@ -39,6 +39,7 @@ public class PicasaWebAlbumsAPI
 			for(PhotoEntry photo : feed.getPhotoEntries()) 
 			{
 			    System.out.println("Photo name: " + photo.getTitle().getPlainText());
+			    System.out.println("Photo id: " + photo.getGphotoId());
 			    List<MediaContent> contentList = photo.getMediaContents();
 			    for(MediaContent content : contentList)
 			    {
