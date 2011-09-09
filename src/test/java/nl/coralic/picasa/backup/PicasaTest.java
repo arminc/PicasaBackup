@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.coralic.picasa.backup.service.Picasa;
+
 import org.junit.Before;
 import org.junit.Test;
 

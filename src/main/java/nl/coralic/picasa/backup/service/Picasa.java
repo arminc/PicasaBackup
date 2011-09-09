@@ -1,4 +1,4 @@
-package nl.coralic.picasa.backup;
+package nl.coralic.picasa.backup.service;
 
 import java.net.URL;
 

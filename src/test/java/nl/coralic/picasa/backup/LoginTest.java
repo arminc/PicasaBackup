@@ -2,6 +2,8 @@ package nl.coralic.picasa.backup;
 
 import static org.junit.Assert.*;
 
+import nl.coralic.picasa.backup.service.Picasa;
+
 import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;

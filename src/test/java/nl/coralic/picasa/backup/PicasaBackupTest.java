@@ -32,7 +32,7 @@ public class PicasaBackupTest
 	{
 		try
 		{
-			PicasaBackup.main(new String[]
+			Main.main(new String[]
 			{ "1" });
 		} catch (ExitException e)
 		{

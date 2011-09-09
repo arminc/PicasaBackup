@@ -1,4 +1,4 @@
-package nl.coralic.picasa.backup;
+package nl.coralic.picasa.backup.log;
 
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
