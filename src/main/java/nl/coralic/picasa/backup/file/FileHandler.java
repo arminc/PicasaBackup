@@ -11,7 +11,7 @@ public class FileHandler
 {
 	static Logger logger = Logger.getLogger("PicasaBackup");
 	
-	public static boolean folderExists(String folder)
+	public static boolean doesFileOrFolderExist(String folder)
 	{
 		return new File(folder).exists();
 	}

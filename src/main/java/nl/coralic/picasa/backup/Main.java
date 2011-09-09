@@ -19,8 +19,12 @@ public class Main
 	{
 		checkArguments(args);
 		LogFactory.initializeLog4J(args);
-		checkTargetFolder(args);
-		PicasaBackup.run(args);
+		if(FileHandler.doesFileOrFolderExist(args[2]))
+		{
+			PicasaBackup.run(args);
+		}
+		logger.info("Folder " + args[2] + " does not exist.");
+		exit();
 	}
 
 	private static void checkArguments(String[] args)
@@ -41,14 +45,5 @@ public class Main
 	private static void exit()
 	{
 		System.exit(0);
-	}
-
-	private static void checkTargetFolder(String[] args)
-	{
-		if (!FileHandler.folderExists(args[2]))
-		{
-			logger.info("Folder " + args[2] + " does not exist.");
-			exit();
-		}
 	}
 }
