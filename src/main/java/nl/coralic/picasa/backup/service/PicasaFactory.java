@@ -4,7 +4,6 @@ import com.google.gdata.client.photos.PicasawebService;
 
 public class PicasaFactory
 {
-
 	public static Picasa createPicasa()
 	{
 		Picasa picasa = new Picasa();

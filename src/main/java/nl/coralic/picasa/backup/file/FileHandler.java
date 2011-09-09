@@ -21,9 +21,9 @@ public class FileHandler
 		FileUtils.forceMkdir(new File(createFolder));
 	}
 	
-	public static String constructFolderPath(String rootFolder, String newFolder)
+	public static String constructNewPath(String rootFolder, String newFolderOrFile)
 	{
-		return rootFolder + File.separator + newFolder;
+		return rootFolder + File.separator + newFolderOrFile;
 	}
 
 	public static void saveMediaToFile(String contentUrl, String fileName)

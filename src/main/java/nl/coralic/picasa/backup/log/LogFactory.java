@@ -1,5 +1,7 @@
 package nl.coralic.picasa.backup.log;
 
+import nl.coralic.picasa.backup.Arguments;
+
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -8,18 +10,19 @@ import org.apache.log4j.PropertyConfigurator;
 
 public class LogFactory
 {
-
-	public static void initializeLog4J(String[] args)
+	private static final String DEFAULTPATTERN = "%-5p [%t]: %m%n";
+	
+	public static void initializeLog4J(Arguments arguments)
 	{
-		if(args.length == 4)
+		if(arguments.isLog4jPropertieSet())
 		{
-			PropertyConfigurator.configure(args[3]);
+			PropertyConfigurator.configure(arguments.getLog4jPropertie());
 		}
 		else
 		{
 			Logger rootLogger = Logger.getRootLogger();
 			rootLogger.setLevel(Level.INFO);
-		    rootLogger.addAppender(new ConsoleAppender(new PatternLayout("%-5p [%t]: %m%n")));
+		    rootLogger.addAppender(new ConsoleAppender(new PatternLayout(DEFAULTPATTERN)));
 		}
 	}
 

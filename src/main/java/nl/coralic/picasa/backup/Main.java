@@ -17,23 +17,25 @@ public class Main
 	public static void main(String[] args) throws AuthenticationException,
 			MalformedURLException, IOException
 	{
-		checkArguments(args);
-		LogFactory.initializeLog4J(args);
-		if(FileHandler.doesFileOrFolderExist(args[2]))
+		Arguments arguments = checkCreateArgumentsOrExit(args);
+		LogFactory.initializeLog4J(arguments);
+		if(FileHandler.doesFileOrFolderExist(arguments.getRootPath()))
 		{
-			PicasaBackup.run(args);
+			PicasaBackup.run(arguments);
 		}
-		logger.info("Folder " + args[2] + " does not exist.");
+		logger.info("Folder " + arguments.getRootPath() + " does not exist.");
 		exit();
 	}
 
-	private static void checkArguments(String[] args)
+	private static Arguments checkCreateArgumentsOrExit(String[] args)
 	{
 		if (args.length != 3)
 		{
 			printUsage();
 			exit();
 		}
+		Arguments arguments = new Arguments(args);
+		return arguments;
 	}
 
 	private static void printUsage()

@@ -12,6 +12,6 @@ public class FileHandlerTest
 	public void constructFolder()
 	{
 		assertEquals("test" + File.separator + "test",
-				FileHandler.constructFolderPath("test", "test"));
+				FileHandler.constructNewPath("test", "test"));
 	}
 }

@@ -16,42 +16,43 @@ public class PicasaBackup
 {
 	static Logger logger = Logger.getLogger("PicasaBackup");
 	static Picasa picasa;
+	static Arguments arguments;
 
-	public static void run(String[] args) throws AuthenticationException
+	public static void run(Arguments args) throws AuthenticationException
 	{
-		createPicasa(args);
-		fetchMediaThenSave(args);
+		arguments = args;
+		createPicasa();
+		fetchMediaThenSave();
 	}
 
-	private static void createPicasa(String[] args)
-			throws AuthenticationException
+	private static void createPicasa() throws AuthenticationException
 	{
 		picasa = PicasaFactory.createPicasa();
-		picasa.login(args[0], args[1]);
+		picasa.login(arguments.getUsername(), arguments.getPassword());
 	}
 
-	private static void fetchMediaThenSave(String[] args)
+	private static void fetchMediaThenSave()
 	{
 		Albums albums = picasa.fetchAlbums();
 		for (Album album : albums)
 		{
 			logger.info("Downloading album " + album.getAlbumName());
-			String albumPath = FileHandler.constructFolderPath(args[2],
-					album.getAlbumName());
+			String albumPath = FileHandler.constructNewPath(
+					arguments.getRootPath(), album.getAlbumName());
 			Media media = picasa.fetchMedia(album.getAlbumId());
 			saveMediaToFile(media, albumPath);
 		}
 	}
 
-	private static void saveMediaToFile(Media media, String savePath)
+	private static void saveMediaToFile(Media media, String albumPath)
 	{
 		for (MediaContent mediaContent : media)
 		{
-			String mediaPath = FileHandler.constructFolderPath(savePath,
+			String saveToPath = FileHandler.constructNewPath(albumPath,
 					mediaContent.getName());
 			logger.info("Downloading media " + mediaContent.getName());
-			FileHandler
-					.saveMediaToFile(mediaContent.getContentUrl(), mediaPath);
+			FileHandler.saveMediaToFile(mediaContent.getContentUrl(),
+					saveToPath);
 		}
 	}
 }
