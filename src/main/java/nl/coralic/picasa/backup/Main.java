@@ -3,6 +3,7 @@ package nl.coralic.picasa.backup;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import nl.coralic.picasa.backup.db.Database;
 import nl.coralic.picasa.backup.file.FileHandler;
 import nl.coralic.picasa.backup.log.LogFactory;
 
@@ -19,12 +20,9 @@ public class Main
 	{
 		Arguments arguments = checkCreateArgumentsOrExit(args);
 		LogFactory.initializeLog4J(arguments);
-		if(FileHandler.doesFileOrFolderExist(arguments.getRootPath()))
-		{
-			PicasaBackup.run(arguments);
-		}
-		logger.info("Folder " + arguments.getRootPath() + " does not exist.");
-		exit();
+		checkPathExistsOrExit(arguments);
+		preCheck(arguments);
+		PicasaBackup.run(arguments);
 	}
 
 	private static Arguments checkCreateArgumentsOrExit(String[] args)
@@ -37,6 +35,20 @@ public class Main
 		Arguments arguments = new Arguments(args);
 		return arguments;
 	}
+	
+	private static void checkPathExistsOrExit(Arguments arguments)
+	{
+		if(!FileHandler.doesFileOrFolderExist(arguments.getRootPath()))
+		{
+			logger.info("Folder " + arguments.getRootPath() + " does not exist.");
+			exit();
+		}		
+	}
+	
+	private static void preCheck(Arguments arguments)
+	{
+
+	}
 
 	private static void printUsage()
 	{
@@ -48,4 +60,6 @@ public class Main
 	{
 		System.exit(0);
 	}
+	
+	
 }
