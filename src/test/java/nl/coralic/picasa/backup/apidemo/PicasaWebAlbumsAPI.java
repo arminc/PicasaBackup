@@ -21,6 +21,8 @@ public class PicasaWebAlbumsAPI
 {	
 	private static PicasawebService picasa;
 
+	//TODO: this should also be a junit test but a skipped one
+	
 	public static void main(String args[]) throws Exception
 	{
 		initalize();
