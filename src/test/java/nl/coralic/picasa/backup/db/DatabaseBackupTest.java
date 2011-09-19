@@ -55,6 +55,12 @@ public class DatabaseBackupTest
 	}
 
 	@Test
+	public void albumDoesNotExist()
+	{
+		
+	}
+	
+	@Test
 	public void albumExists()
 	{
 		
@@ -65,4 +71,6 @@ public class DatabaseBackupTest
 	{
 
 	}
+	
+
 }

@@ -20,9 +20,14 @@ public class MediaContent
 		return false;
 	}
 
-	public String getName()
+	public String getFileName()
 	{
 		return photoEntry.getTitle().getPlainText();
+	}
+	
+	public String getId()
+	{
+		return photoEntry.getGphotoId();
 	}
 
 	public String getContentUrl()
@@ -31,6 +36,7 @@ public class MediaContent
 		{
 			return photoEntry.getMediaContents().get(0).getUrl();
 		}
+		//get the last one because that seems to be the biggest video size?
 		return photoEntry.getMediaContents().get(photoEntry.getMediaContents().size()-1).getUrl();
 	}
 }

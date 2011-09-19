@@ -88,7 +88,7 @@ public class MediaContentTest
 	@Test
 	public void getName()
 	{
-		assertEquals(NAME, mediaContentPhoto.getName());
+		assertEquals(NAME, mediaContentPhoto.getFileName());
 	}
 	
 	@Test

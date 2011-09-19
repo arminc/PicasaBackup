@@ -49,4 +49,11 @@ public class Database
 		em.persist(albumEntity);
 		em.getTransaction().commit();
 	}
+
+	public void saveMedia(MediaEntity media)
+	{
+		em.getTransaction().begin();
+		em.persist(media);
+		em.getTransaction().commit();
+	}
 }
