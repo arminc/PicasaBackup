@@ -7,9 +7,18 @@
 	<version>1</version>
 	<packaging>jar</packaging>
 
-	<name>test</name>
+	<name>PicasaBackup</name>
 	<url>http://maven.apache.org</url>
 
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.sonatype.maven.plugin</groupId>
+				<artifactId>emma-maven-plugin</artifactId>
+				<version>1.2</version>
+			</plugin>
+		</plugins>
+	</reporting>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
