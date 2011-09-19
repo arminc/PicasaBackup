@@ -8,6 +8,7 @@ import nl.coralic.picasa.backup.content.Media;
 import nl.coralic.picasa.backup.content.MediaContent;
 import nl.coralic.picasa.backup.db.AlbumEntity;
 import nl.coralic.picasa.backup.db.Database;
+import nl.coralic.picasa.backup.db.DatabaseFactory;
 import nl.coralic.picasa.backup.db.MediaEntity;
 import nl.coralic.picasa.backup.file.FileHandler;
 import nl.coralic.picasa.backup.service.Picasa;
@@ -33,7 +34,7 @@ public class PicasaBackup
 	
 	private static void createDatabase()
 	{
-		database = new Database(arguments.getRootPath());
+		database = DatabaseFactory.createDatabase(arguments.getRootPath());
 	}
 	
 	private static void closeDatabase()

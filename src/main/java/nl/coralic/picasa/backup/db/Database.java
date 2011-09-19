@@ -2,22 +2,18 @@ package nl.coralic.picasa.backup.db;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import nl.coralic.picasa.backup.file.FileHandler;
-
 public class Database
 {
-	public static final String DBNAME = "picasabackup.odb";
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	
-	public Database(String rootFolder)
+	public void setResources(EntityManagerFactory emf, EntityManager em)
 	{
-		emf = Persistence.createEntityManagerFactory(FileHandler.constructNewPath(rootFolder, DBNAME));
-	    em = emf.createEntityManager();
+		this.emf = emf;
+		this.em = em;
 	}
 	
 	public void closeDatabase()
