@@ -3,7 +3,6 @@ package nl.coralic.picasa.backup;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-import nl.coralic.picasa.backup.db.Database;
 import nl.coralic.picasa.backup.file.FileHandler;
 import nl.coralic.picasa.backup.log.LogFactory;
 

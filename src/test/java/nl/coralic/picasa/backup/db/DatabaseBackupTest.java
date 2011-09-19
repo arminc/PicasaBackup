@@ -113,7 +113,7 @@ public class DatabaseBackupTest
 		EntityManager emSecondFaild = emfSecondFaild.createEntityManager();
 		try
 		{
-			createAlbums(emFirst);
+			createAlbums(emSecondFaild);
 		}
 		catch (PersistenceException e) 
 		{
