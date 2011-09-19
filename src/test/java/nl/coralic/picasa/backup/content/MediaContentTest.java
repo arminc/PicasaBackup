@@ -17,6 +17,7 @@ public class MediaContentTest
 	MediaContent mediaContentVideo;
 	private static final String NAME = "test.jpg";
 	private static final String URL = "http://picasa.com/photo.jpg";
+	private static final String ID = "id12345";
 	
 	@Before
 	public void initialize()
@@ -47,7 +48,10 @@ public class MediaContentTest
 		List<com.google.gdata.data.media.mediarss.MediaContent> fakeList = mock(ArrayList.class);
 		when(fakeList.size()).thenReturn(size);
 		com.google.gdata.data.media.mediarss.MediaContent fakeMediaContent = createFakeMediaContent();
-		when(fakeList.get(0)).thenReturn(fakeMediaContent);
+		for(int i = 0;i<size;i++)
+		{
+			when(fakeList.get(i)).thenReturn(fakeMediaContent);
+		}		
 		return fakeList;
 	}
 	
@@ -63,6 +67,7 @@ public class MediaContentTest
 		PhotoEntry fakePhotoEntry = mock(PhotoEntry.class);
 		TextConstruct fakeText = createFakeTextConstruct();
 		when(fakePhotoEntry.getTitle()).thenReturn(fakeText);
+		when(fakePhotoEntry.getGphotoId()).thenReturn(ID);
 		return fakePhotoEntry;
 	}
 	
@@ -86,14 +91,26 @@ public class MediaContentTest
 	}
 	
 	@Test
-	public void getName()
+	public void getFileName()
 	{
 		assertEquals(NAME, mediaContentPhoto.getFileName());
 	}
 	
 	@Test
-	public void getContentUrl()
+	public void getId()
+	{
+		assertEquals(ID, mediaContentPhoto.getId());
+	}
+	
+	@Test
+	public void getContentUrlPhoto()
 	{
 		assertEquals(URL, mediaContentPhoto.getContentUrl());
+	}
+	
+	@Test
+	public void getContentUrlVideo()
+	{
+		assertEquals(URL, mediaContentVideo.getContentUrl());
 	}
 }
