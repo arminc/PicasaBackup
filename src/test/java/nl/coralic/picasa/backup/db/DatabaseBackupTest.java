@@ -23,6 +23,7 @@ public class DatabaseBackupTest
 	static final String FAKEDB = "FAKEDB.odb";
 	static final String ALBUMID = "112345";
 	static final String ALBUMID2 = "67890";
+	static final String MEDIAID = "112345";
 	private static EntityManagerFactory emf;
 	private static EntityManager em;
 	static Database database;
@@ -32,6 +33,7 @@ public class DatabaseBackupTest
 	{	
 		createDatabase();
 		createAlbums(em);
+		createMedia();
 	}
 	
 	private static void createDatabase()
@@ -50,6 +52,14 @@ public class DatabaseBackupTest
 		eManager.persist(albumEntity);
 		eManager.persist(albumEntity2);
 		eManager.getTransaction().commit();
+	}
+	
+	private static void createMedia()
+	{
+		MediaEntity mediaEntity = new MediaEntity(ALBUMID,MEDIAID,"fakeFileName");
+		em.getTransaction().begin();
+		em.persist(mediaEntity);
+		em.getTransaction().commit();
 	}
 	
 	@AfterClass
@@ -129,7 +139,7 @@ public class DatabaseBackupTest
 	}
 	
 	@Test
-	public void createMedia()
+	public void saveMedia()
 	{
 		TypedQuery<MediaEntity> query = em.createQuery("SELECT m FROM MediaEntity m WHERE m.mediaId='PRIVATEID'", MediaEntity.class);
 		List<MediaEntity> results = query.getResultList();
@@ -138,5 +148,17 @@ public class DatabaseBackupTest
 		database.saveMedia(mediaEntity);
 		results = query.getResultList();
 		assertFalse(results.isEmpty());
+	}
+	
+	@Test
+	public void mediaDoesNotExist()
+	{
+		assertFalse(database.mediaExists("FAKEID"));
+	}
+	
+	@Test
+	public void mediaExists()
+	{
+		assertTrue(database.mediaExists(MEDIAID));
 	}
 }

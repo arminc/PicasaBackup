@@ -73,9 +73,21 @@ public class PicasaBackup
 		Media media = picasa.fetchMedia(album.getAlbumId());
 		for (MediaContent mediaContent : media)
 		{
-			saveMediaToFile(mediaContent, album.getAlbumName());			
-			saveMediaToDatabase(mediaContent, album.getAlbumId());
+			if(downloadMediaContent(mediaContent.getId()))
+			{
+				saveMediaToFile(mediaContent, album.getAlbumName());			
+				saveMediaToDatabase(mediaContent, album.getAlbumId());
+			}
 		}
+	}
+	
+	private static boolean downloadMediaContent(String mediaId)
+	{
+		if(database.mediaExists(mediaId))
+		{
+			//check changed date
+		}
+		return true;
 	}
 	
 	private static void saveMediaToFile(MediaContent mediaContent, String albumName)

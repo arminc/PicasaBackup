@@ -47,4 +47,15 @@ public class Database
 		em.persist(media);
 		em.getTransaction().commit();
 	}
+
+	public boolean mediaExists(String mediaId)
+	{
+		TypedQuery<MediaEntity> query = em.createQuery("SELECT m FROM MediaEntity m WHERE m.mediaId='"+mediaId+"'", MediaEntity.class);
+		List<MediaEntity> results = query.getResultList();
+		if(results.isEmpty())
+		{
+			return false;
+		}
+		return true;
+	}
 }
