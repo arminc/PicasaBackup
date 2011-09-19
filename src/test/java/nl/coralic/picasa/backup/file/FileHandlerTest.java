@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 
 public class FileHandlerTest
 {
+	//TODO: save things to file
 	@Test
 	public void constructFolder()
 	{
