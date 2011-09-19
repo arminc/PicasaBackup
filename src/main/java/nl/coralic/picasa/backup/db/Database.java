@@ -1,9 +1,10 @@
 package nl.coralic.picasa.backup.db;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceException;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 public class Database
 {
@@ -24,19 +25,13 @@ public class Database
 
 	public boolean albumExists(String albumId)
 	{
-		Query query = em.createQuery("SELECT COUNT(a) FROM AlbumEntity a");
-		try
+		TypedQuery<AlbumEntity> query = em.createQuery("SELECT a FROM AlbumEntity a WHERE a.albumId='"+albumId+"'", AlbumEntity.class);
+		List<AlbumEntity> results = query.getResultList();
+		if(results.isEmpty())
 		{
-			if(query.getSingleResult().equals("1"))
-			{
-				return true;
-			}
+			return false;
 		}
-		catch(PersistenceException pe)
-		{
-			
-		}
-		return false;
+		return true;
 	}
 
 	public void saveAlbum(AlbumEntity albumEntity)
