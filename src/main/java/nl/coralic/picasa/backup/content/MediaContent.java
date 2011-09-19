@@ -1,5 +1,6 @@
 package nl.coralic.picasa.backup.content;
 
+import com.google.gdata.data.DateTime;
 import com.google.gdata.data.photos.PhotoEntry;
 
 public class MediaContent
@@ -30,6 +31,12 @@ public class MediaContent
 		return photoEntry.getGphotoId();
 	}
 
+	public long getLastChanged()
+	{
+		DateTime dateTime = photoEntry.getUpdated();
+		return dateTime.getValue();
+	}
+	
 	public String getContentUrl()
 	{
 		if(isPhoto())

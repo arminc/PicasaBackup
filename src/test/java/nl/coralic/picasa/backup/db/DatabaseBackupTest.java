@@ -56,7 +56,7 @@ public class DatabaseBackupTest
 	
 	private static void createMedia()
 	{
-		MediaEntity mediaEntity = new MediaEntity(ALBUMID,MEDIAID,"fakeFileName");
+		MediaEntity mediaEntity = new MediaEntity(ALBUMID,MEDIAID,"fakeFileName",1000);
 		em.getTransaction().begin();
 		em.persist(mediaEntity);
 		em.getTransaction().commit();
@@ -144,7 +144,7 @@ public class DatabaseBackupTest
 		TypedQuery<MediaEntity> query = em.createQuery("SELECT m FROM MediaEntity m WHERE m.mediaId='PRIVATEID'", MediaEntity.class);
 		List<MediaEntity> results = query.getResultList();
 		assertTrue(results.isEmpty());
-		MediaEntity mediaEntity = new MediaEntity("AlbumId","PRIVATEID","FileName");
+		MediaEntity mediaEntity = new MediaEntity("AlbumId","PRIVATEID","FileName",100);
 		database.saveMedia(mediaEntity);
 		results = query.getResultList();
 		assertFalse(results.isEmpty());
@@ -160,5 +160,13 @@ public class DatabaseBackupTest
 	public void mediaExists()
 	{
 		assertTrue(database.mediaExists(MEDIAID));
+	}
+	
+	@Test
+	public void getLastChanged()
+	{
+		MediaEntity mediaEntity = database.getMediaEntity(MEDIAID);
+		assertNotNull(mediaEntity);
+		assertEquals(1000, mediaEntity.getLastChanged());
 	}
 }

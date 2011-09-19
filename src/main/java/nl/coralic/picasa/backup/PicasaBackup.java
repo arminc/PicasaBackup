@@ -73,19 +73,27 @@ public class PicasaBackup
 		Media media = picasa.fetchMedia(album.getAlbumId());
 		for (MediaContent mediaContent : media)
 		{
-			if(downloadMediaContent(mediaContent.getId()))
+			if(downloadMediaContent(mediaContent.getId(),mediaContent.getLastChanged()))
 			{
 				saveMediaToFile(mediaContent, album.getAlbumName());			
 				saveMediaToDatabase(mediaContent, album.getAlbumId());
 			}
+			else
+			{
+				logger.info("Skip media " + mediaContent.getFileName());
+			}
 		}
 	}
 	
-	private static boolean downloadMediaContent(String mediaId)
+	private static boolean downloadMediaContent(String mediaId, long lastChanged)
 	{
 		if(database.mediaExists(mediaId))
 		{
-			//check changed date
+			MediaEntity mediaEntity = database.getMediaEntity(mediaId);
+			if(lastChanged == mediaEntity.getLastChanged())
+			{
+				return false;
+			}
 		}
 		return true;
 	}
@@ -100,7 +108,7 @@ public class PicasaBackup
 	
 	private static void saveMediaToDatabase(MediaContent mediaContent, String albumId)
 	{
-		MediaEntity mediaEntity = new MediaEntity(albumId, mediaContent.getId(), mediaContent.getFileName());
+		MediaEntity mediaEntity = new MediaEntity(albumId, mediaContent.getId(), mediaContent.getFileName(), mediaContent.getLastChanged());
 		database.saveMedia(mediaEntity);
 	}
 }

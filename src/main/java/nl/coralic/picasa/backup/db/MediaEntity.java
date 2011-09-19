@@ -14,12 +14,14 @@ public class MediaEntity
 	private String albumId;
 	private String mediaId;
 	private String contentFileName;
+	private long lastChanged;
 
-	public MediaEntity(String albumId, String mediaId, String contentFileName)
+	public MediaEntity(String albumId, String mediaId, String contentFileName, long lastChanged)
 	{
 		this.albumId = albumId;
 		this.mediaId = mediaId;
 		this.contentFileName = contentFileName;
+		this.lastChanged = lastChanged;
 	}
 
 	public long getId()
@@ -41,5 +43,9 @@ public class MediaEntity
 	{
 		return contentFileName;
 	}
-
+	
+	public long getLastChanged()
+	{
+		return lastChanged;
+	}
 }

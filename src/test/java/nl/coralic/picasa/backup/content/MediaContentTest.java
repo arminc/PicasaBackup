@@ -8,6 +8,7 @@ import org.junit.Test;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
+import com.google.gdata.data.DateTime;
 import com.google.gdata.data.TextConstruct;
 import com.google.gdata.data.photos.PhotoEntry;
 
@@ -31,6 +32,7 @@ public class MediaContentTest
 		PhotoEntry fakePhotoEntry = createFakePhotoEntry();
 		List<com.google.gdata.data.media.mediarss.MediaContent> fakeList = createFakeList(1);
 		when(fakePhotoEntry.getMediaContents()).thenReturn(fakeList);
+		when(fakePhotoEntry.getUpdated()).thenReturn(new DateTime(1000));
 		return fakePhotoEntry;
 	}
 	
@@ -104,13 +106,19 @@ public class MediaContentTest
 	
 	@Test
 	public void getContentUrlPhoto()
-	{
-		assertEquals(URL, mediaContentPhoto.getContentUrl());
+	{		
+		assertTrue(mediaContentPhoto.isPhoto());
 	}
 	
 	@Test
 	public void getContentUrlVideo()
 	{
 		assertEquals(URL, mediaContentVideo.getContentUrl());
+	}
+	
+	@Test
+	public void getLastChanged()
+	{
+		assertEquals(1000, mediaContentPhoto.getLastChanged());
 	}
 }

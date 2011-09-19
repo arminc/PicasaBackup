@@ -58,4 +58,10 @@ public class Database
 		}
 		return true;
 	}
+	
+	public MediaEntity getMediaEntity(String mediaId)
+	{
+		TypedQuery<MediaEntity> query = em.createQuery("SELECT m FROM MediaEntity m WHERE m.mediaId='"+mediaId+"'", MediaEntity.class);
+		return query.getSingleResult();
+	}
 }
