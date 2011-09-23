@@ -15,4 +15,12 @@ public class FileHandlerTest
 		assertEquals("test" + File.separator + "test",
 				FileHandler.constructNewPath("test", "test"));
 	}
+	
+	@Test
+	public void constructMediaContentFileNameWithId()
+	{
+		String fileName = "testing.jpg";
+		String id = "12345";
+		assertEquals("testing_12345.jpg", FileHandler.constructMediaContentFileNameWithId(fileName, id));
+	}
 }

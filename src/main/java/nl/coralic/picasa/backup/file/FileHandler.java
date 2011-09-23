@@ -36,4 +36,13 @@ public class FileHandler
 			logger.error("Faild to save " + fileName, e);
 		}		
 	}
+
+	public static String constructMediaContentFileNameWithId(String fileName,
+			String id)
+	{
+		int lastIndex = fileName.lastIndexOf(".");
+		String tmpFileName = fileName.substring(0, lastIndex);
+		String tmpFileExtention = fileName.substring(lastIndex);
+		return tmpFileName + "_" + id + tmpFileExtention;
+	}
 }

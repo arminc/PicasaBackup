@@ -101,8 +101,9 @@ public class PicasaBackup
 	private static void saveMediaToFile(MediaContent mediaContent, String albumName)
 	{
 		String albumPath = FileHandler.constructNewPath(arguments.getRootPath(), albumName);
-		String saveToPath = FileHandler.constructNewPath(albumPath, mediaContent.getFileName());
-		logger.info("Downloading media " + mediaContent.getFileName());
+		String mediaContentFileName = FileHandler.constructMediaContentFileNameWithId(mediaContent.getFileName(), mediaContent.getId());
+		String saveToPath = FileHandler.constructNewPath(albumPath, mediaContentFileName);
+		logger.info("Downloading media " + mediaContent.getFileName() + " local file name: " + mediaContentFileName);
 		FileHandler.saveMediaToFile(mediaContent.getContentUrl(),saveToPath);
 	}
 	
