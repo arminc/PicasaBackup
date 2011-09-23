@@ -26,7 +26,7 @@ public class PicasaWebAlbumsAPITest
 	private static PicasawebService picasa;
 
 	@BeforeClass
-	public void initialize() throws FileNotFoundException, IOException,
+	public static void initialize() throws FileNotFoundException, IOException,
 			AuthenticationException
 	{
 		Properties p = new Properties();
